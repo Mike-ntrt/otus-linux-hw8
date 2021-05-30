@@ -1,0 +1,11 @@
+---
+- name: Add httpd service template
+  template:
+    src: httpd-1.j2
+    dest: /etc/sysconfig/httpd-1
+
+- name: Setup systemd httpd template service
+  template:
+    src: httpd@.service.j2
+    dest: /etc/systemd/system/httpd@.service
+  notify: enable_service

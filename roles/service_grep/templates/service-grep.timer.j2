@@ -1,0 +1,11 @@
+[Unit]
+Description=Start grep every {{ timer_sec }} sec
+After=network.target multi-user.target
+
+[Timer]
+OnUnitActiveSec={{ timer_sec }}s
+OnBootSec={{ timer_sec }}s
+Unit=service-grep.service
+
+[Install]
+WantedBy=timers.target

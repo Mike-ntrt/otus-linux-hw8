@@ -1,0 +1,12 @@
+[Unit]
+Description=Grep "/var/log/message"
+After=network.target multi-user.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/grep.conf
+ExecStart=/bin/sh -c 'grep -i $WORD $SOURCE >> /var/grep_log.log'
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

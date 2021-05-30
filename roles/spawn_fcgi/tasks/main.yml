@@ -1,0 +1,25 @@
+---
+- name: Install EPEL repo
+  yum: name=epel-release state=present
+
+- name: Install spawn-fcgi
+  yum: 
+    name:
+      - spawn-fcgi
+      - httpd
+      - php
+      - php-cli
+      - mod_fcgid
+    state: present
+
+- name: Add spawn-fcgi service config
+  template:
+    src: spawn-fcgi.j2
+    dest: /etc/sysconfig/spawn-fcgi
+    mode: 0600
+
+- name: Setup systemd spawn-fcgi service
+  template:
+    src: spawn-fcgi.service.j2
+    dest: /etc/systemd/system/spawn-fcgi.service
+  notify: enable_service

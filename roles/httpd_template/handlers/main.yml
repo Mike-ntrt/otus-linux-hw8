@@ -1,0 +1,7 @@
+---
+- name: enable_service
+  systemd:
+    name: httpd@1
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

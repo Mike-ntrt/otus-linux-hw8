@@ -1,0 +1,24 @@
+---
+- name: Cope env file
+  copy:
+    src: grep.conf
+    dest: /etc/sysconfig/grep.conf
+    mode: 0644
+
+- name: Create log file
+  file:
+    path: /var/grep_log.log
+    mode: 0644
+    state: touch
+
+- name: Setup systemd service
+  template:
+    src: service-grep.service.j2
+    dest: /etc/systemd/system/service-grep.service
+  notify: enable_service
+
+- name: Setup systemd timer
+  template:
+    src: service-grep.timer.j2
+    dest: /etc/systemd/system/service-grep.timer
+  notify: enable_service

@@ -1,0 +1,14 @@
+[Unit]
+Description=Spawn-fsgi service
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/sysconfig/spawn-fcgi
+ExecStart=/usr/bin/spawn-fcgi $OPTIONS
+PIDFile=/var/run/spawn-fcgi.pid
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

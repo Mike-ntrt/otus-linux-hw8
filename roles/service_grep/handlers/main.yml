@@ -1,0 +1,10 @@
+---
+- name: enable_service
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  loop:
+     - service-grep.service
+     - service-grep.timer
