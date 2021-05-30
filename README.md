@@ -15,11 +15,12 @@ Vagantfile содержит описание ВМ:
     - httpd
     - php
     - php-cli
-    - mod_fcgid
+    - mod_fcgid  
+
    Копируем юнит spawn-fcgi.service.j2 и конфиг spawn-fcgi.j2
    После релоада конфигов статус сервиса:
 
-```
+   ```
    [root@systemd vagrant]# systemctl status spawn-fcgi.service 
    ● spawn-fcgi.service - Spawn-fsgi service
       Loaded: loaded (/etc/systemd/system/spawn-fcgi.service; enabled; vendor preset: disabled)
@@ -37,7 +38,7 @@ Vagantfile содержит описание ВМ:
               ├─5997 /usr/bin/php-cgi
               ├─5998 /usr/bin/php-cgi
               ├─5999 /usr/bin/php-cgi
-```
+   ```
 
 3. httpd_template: копируем юнит-файл httpd в `/etc/systemd/system/httpd@.service` и меняем:
    `EnvironmentFile=/etc/sysconfig/httpd-%i`
